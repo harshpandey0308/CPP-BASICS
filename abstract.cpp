@@ -18,7 +18,5 @@ int main(){
 
     a->sound();
 
-
-
     return 0;
 }
