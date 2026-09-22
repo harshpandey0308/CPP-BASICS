@@ -18,7 +18,8 @@ class STUDENT{
                 size_t rollnumber , char class_ , size_t subject_count):name{name_} , surname(sur_name) , father_name(fatherName) , mother_name(motherName) , 
                 roll_number(rollnumber) , _class(class_) , subject(subject_count) , marks(new int[subject_count]) {};
             
-        STUDENT(const STUDENT& B):name(B.name) , father_name(B.father_name) , mother_name(B.mother_name) , roll_number(B.roll_number) , _class(B._class) , subject(B.subject) , marks(new int[B.subject]){
+        STUDENT(const STUDENT& B):name(B.name) , surname(B.surname) , father_name(B.father_name) , mother_name(B.mother_name) , roll_number(B.roll_number) , _class(B._class) , subject(B.subject) , marks(new int[B.subject]){
+            cout<<"COPY CONSTRUCTOR"<<'\n';
              std::copy(B.marks , B.marks + B.subject , marks);
         };
 
@@ -26,6 +27,8 @@ class STUDENT{
             if(this == &other){
                 return *this;
             }
+
+            cout<<"COPY ASSIGNMENT OPERATOR"<<'\n';
 
             int *new_marks = new int[other.subject];
             std::copy(other.marks , other.marks + other.subject , new_marks);
@@ -53,10 +56,15 @@ class STUDENT{
             cout<<"Roll number : "<<roll_number<<'\n';
             cout<<"Class : "<<_class<<'\n';
 
+            size_t i = 0;
             cout<<"======marks======="<<'\n';
-            for(size_t i : *marks){
-               cout<<i<<'\n';
+            while(i < subject){
+                cout<<marks[i]<<'\n';
+                i++;
             }
+
+            cout<<"\n";
+            cout<<"\n==========REPORT END==========\n"<<'\n';
         }
 
 };
@@ -65,6 +73,7 @@ int main(){
     STUDENT s1("Harsh" , "Pandey" , "V.K.Pandey" , "Pratibha Pandey" , 43 , 'x' , 4);
 
     s1.insert_marks(23 , 1);
+    s1.insert_marks(42 , 0);
     s1.insert_marks(34 , 2);
     s1.insert_marks(49 , 3);
 
