@@ -23,6 +23,23 @@ class EMPLOYEE{
                 cout<<"the pointer moved from other to new"<<'\n';
         }
 
+        EMPLOYEE& operator=(EMPLOYEE&& other){
+            if(this != &other){
+                delete salary;
+
+                cout<<"the move assignment"<<'\n';
+
+                name = other.name;
+                position = other.position;
+                salary = other.salary;
+
+                other.salary = nullptr;
+                
+            }
+
+            return *this;
+        }
+
         ~EMPLOYEE(){
             delete salary;
         }
@@ -34,6 +51,10 @@ int main(){
     EMPLOYEE e2 = e1;
 
     EMPLOYEE e3 = std::move(e1);
+
+    EMPLOYEE e4("Avnish" , "Senior Software Engineer" , 90000.678);
+
+    e4 = std::move(e3);
 
     return 0;
 }
