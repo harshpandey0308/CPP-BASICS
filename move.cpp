@@ -12,9 +12,9 @@ class EMPLOYEE{
     public : 
         EMPLOYEE(string name_ , string position_ , double salary_) : name(name_) , position(position_) , salary(new double(salary_)){}
 
-        EMPLOYEE(const EMPLOYEE& other) : name(other.name) , position(other.position){
-            marks(new double(other.salary));
-            *marks = *other.marks;
+        EMPLOYEE(const EMPLOYEE& other) : name(other.name) , position(other.position) , salary(new double(*other.salary)){
+            cout<<"address of other "<<other.salary<<'\n';
+            cout<<"the address is "<<salary<<'\n';
             cout<<"copy constructor"<<'\n';
         }
 
@@ -26,13 +26,15 @@ class EMPLOYEE{
         ~EMPLOYEE(){
             delete salary;
         }
-}
+};
 
 int main(){
     EMPLOYEE e1("harsh" , "Software engineer" , 50000.89);
 
     EMPLOYEE e2 = e1;
 
-    EMPLOYEE e3 = e1;
+    EMPLOYEE e3 = std::move(e1);
+
+    return 0;
 }
 
