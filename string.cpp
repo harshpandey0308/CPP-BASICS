@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(){
-    std::string name = "Harsh";
+    std::string name = "ankit";
 
     cout<<"size of the string = "<<name.size()<<'\n';
 
