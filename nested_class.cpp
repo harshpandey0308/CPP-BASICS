@@ -25,8 +25,8 @@ class Linked_List{
 
         NODE *root = NULL;
 
-        NODE *_init_node(){
-            NODE *new_node = new NODE(0);
+        NODE *_init_node(int value){
+            NODE *new_node = new NODE(value);
             new_node->next = NULL;
             return new_node;
         }
@@ -97,13 +97,11 @@ class Linked_List{
         }
 
         Iterator end(){
-            
+            return Iterator(nullptr);
         }
 
         void insertion(int value){
-            NODE *node = _init_node();
-
-            node->value = value;
+            NODE *node = _init_node(value);
 
             if(root == NULL){
                 root = node;
@@ -116,7 +114,6 @@ class Linked_List{
             }
 
             temp->next = node;
-            temp = node;
 
         }
 
@@ -140,6 +137,10 @@ int main(){
     l1.insertion(43);
     l1.insertion(50);
     l1.insertion(23);
+
+    for(auto it = l1.begin() ; it != l1.end() ; ++it){
+       cout<<*it<<endl;
+    }
 
     l1.display();
 
